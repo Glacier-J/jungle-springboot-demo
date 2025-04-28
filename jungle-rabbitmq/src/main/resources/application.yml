@@ -1,4 +1,6 @@
 
+server:
+  port: 8081
 spring:
   rabbitmq:
     host: 192.168.21.201

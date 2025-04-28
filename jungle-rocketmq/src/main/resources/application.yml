@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: jungle-demo-service
+
+rocketmq:
+  name-server: 47.109.52.29:9876
+  producer:
+    group: ${spring.application.name}_common-message-execute_pg
+    send-message-timeout: 2000
+    retry-times-when-send-failed: 1
+    retry-times-when-send-async-failed: 1

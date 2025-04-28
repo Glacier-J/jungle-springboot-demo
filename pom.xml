@@ -27,6 +27,7 @@
         <module>jungle-kafka</module>
         <module>jungle-springboot3-bom</module>
         <module>jungle-rabbitmq</module>
+        <module>jungle-rocketmq</module>
     </modules>
 
     <properties>
