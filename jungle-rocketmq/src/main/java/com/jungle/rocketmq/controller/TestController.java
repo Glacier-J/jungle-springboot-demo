@@ -18,10 +18,10 @@ public class TestController {
     private final DelayCloseOrderSendProducer delayCloseOrderSendProducer;
 
     @GetMapping("/send")
-    public SendResult sendDelayCloseOrder(String customName) {
+    public SendResult sendDelayCloseOrder(String requestParam) {
         DelayCloseOrderEvent delayCloseOrderEvent = DelayCloseOrderEvent.builder()
                 .orderSn(UUID.randomUUID().toString())
-                .customName(customName)
+                .customName(requestParam)
                 .build();
         return delayCloseOrderSendProducer.sendMessage(delayCloseOrderEvent);
     }

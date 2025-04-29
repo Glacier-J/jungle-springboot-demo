@@ -45,8 +45,7 @@ public abstract class AbstractSendTemplate<T> {
             if(StringUtils.isNotBlank(baseSendExtendDTO.getTag())){
                 destinationSb.append(":").append(baseSendExtendDTO.getTag());
             }
-            SendResult sendResult1 = rocketMQTemplate.syncSend(destinationSb.toString(), buildMessage(messageSendEvent, baseSendExtendDTO));
-            log.info("sendResult1:{}",sendResult1);
+
             sendResult = rocketMQTemplate.syncSend(
                     destinationSb.toString(),
                     buildMessage(messageSendEvent, baseSendExtendDTO),
