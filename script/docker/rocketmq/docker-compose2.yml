@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  rocketmq:
+    image: xuchengen/rocketmq:latest
+    container_name: rocketmq
+    hostname: rocketmq
+    restart: always
+    network_mode: host
+    ports:
+      - "8080:8080"    # RocketMQ Console 控制台
+      - "9876:9876"    # NameServer 端口
+      - "10909:10909"  # Broker HA 端口
+      - "10911:10911"  # Broker 主端口
+      - "10912:10912"  # Broker 从端口（如有）
+    volumes:
+      - ./data:/home/app/data
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JAVA_OPT_EXT=-server -Xms1g -Xmx1g -Xmn512m  # 建议的 JVM 参数
+
+volumes:
+  data:
+# nameserver最小堆内存，默认1024m
+#  NAMESRV_XMS=1024m
+#  # nameserver最大堆内存，默认1024m
+#  NAMESRV_XMX=1024m
+#  # nameserver年轻代内存，默认256m
+#  NAMESRV_XMN=256m
+#  # broker最小堆内存，默认1024m
+#  BROKER_XMS=1024m
+#  # broker最大堆内存，默认1024m
+#  BROKER_XMX=1024m
+#  # broker年轻代内存，默认256m
+#  BROKER_XMN=256m
+#  # broker堆外内存，默认1024m
+#  BROKER_MDM=1024m
+#  # 控制台nameserver地址，默认localhost:9876
+#  NAMESRV_ADDR=localhost:9876

@@ -39,7 +39,7 @@ public class DelayCloseOrderSendProducer extends AbstractSendTemplate<DelayClose
                 // RocketMQ 延时10分钟
                 // 延迟消息级别 1  2  3   4   5  6  7  8  9  10 11 12 13 14  15  16  17 18
                 // 对应延时时间 1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
-                .delayLevel(14)
+                .delayLevel(2)
                 .build();
     }
 

@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    username: root
+    password: Jskfb@2021
+    url: jdbc:mysql://10.126.226.20:3306/temp_db
+    type: com.alibaba.druid.pool.DruidDataSource
+  elasticsearch:
+    connection-timeout: 1s
+    uris: http://47.109.52.29:9200
+    username:
+    password:
+server:
+  port: 8084
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml

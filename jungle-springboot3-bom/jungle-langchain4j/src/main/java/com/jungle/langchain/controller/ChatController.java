@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/jungle")
+@RequestMapping("/dl4j")
 public class ChatController {
 
     ChatLanguageModel chatLanguageModel;
@@ -19,7 +19,7 @@ public class ChatController {
     }
 
     @Autowired
-    IAssistant assistant;
+    private IAssistant assistant;
 
     @GetMapping("/chat")
     public String chat(String message) {

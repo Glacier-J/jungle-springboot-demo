@@ -6,7 +6,7 @@ spring:
     name: jungle-demo-service
 
 rocketmq:
-  name-server: common-rocketmq-dev.magestack.cn:9876 #47.109.52.29:9876
+  name-server: 47.109.52.29:9876 #common-rocketmq-dev.magestack.cn:9876 #
   producer:
     group: ${spring.application.name}_common-message-execute_pg
     send-message-timeout: 2000

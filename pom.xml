@@ -28,6 +28,7 @@
         <module>jungle-springboot3-bom</module>
         <module>jungle-rabbitmq</module>
         <module>jungle-rocketmq</module>
+        <module>jungle-elasticsearch</module>
     </modules>
 
     <properties>
