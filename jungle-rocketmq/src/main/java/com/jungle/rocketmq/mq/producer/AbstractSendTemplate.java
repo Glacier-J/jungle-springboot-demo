@@ -39,7 +39,7 @@ public abstract class AbstractSendTemplate<T> {
         BaseSendExtendDTO baseSendExtendDTO = buildBaseSendExtentDTO(messageSendEvent);
         SendResult sendResult;
         try {
-            //构建 destination( topic:tag )
+            //构建 destination ( topic:tag )若有tag则是向指定的tag发送消息
             StringBuilder destinationSb = new StringBuilder();
             destinationSb.append(baseSendExtendDTO.getTopic());
             if(StringUtils.isNotBlank(baseSendExtendDTO.getTag())){

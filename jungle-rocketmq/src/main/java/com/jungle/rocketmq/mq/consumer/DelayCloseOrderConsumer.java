@@ -5,6 +5,7 @@ import com.jungle.rocketmq.mq.domain.MessageWrapper;
 import com.jungle.rocketmq.mq.event.DelayCloseOrderEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
+import org.apache.rocketmq.spring.annotation.SelectorType;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +15,7 @@ import static com.jungle.rocketmq.constant.RocketMQConstant.*;
 @Component
 @RocketMQMessageListener(
         topic = ORDER_DELAY_CLOSE_TOPIC_KEY,
-        selectorExpression = ORDER_DELAY_CLOSE_TAG_KEY,
+        selectorExpression = ORDER_DELAY_CLOSE_TAG_KEY, //监听指定tag的消息
         consumerGroup = ORDER_DELAY_CLOSE_CG_KEY
 )
 public class DelayCloseOrderConsumer  implements RocketMQListener<MessageWrapper<DelayCloseOrderEvent>> {
