@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "weather": {
+            "command": "java",
+            "args": [
+                "-Dspring.ai.mcp.server.stdio=true",
+                "-Dspring.main.web-application-type=none",
+                "-Dlogging.pattern.console=",
+                "-jar",
+                "C:\\Users\\Admin\\IdeaProjects\\jungle-springboot-demo\\jungle-springboot3-bom\\jungle-mcp\\jungle-mcp-webflux-server\\target\\jungle-mcp-webflux-server-1.0.1.jar"],
+            "env": {}
+        }
+    }
+}

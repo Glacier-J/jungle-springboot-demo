@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>jungle-springboot3-bom</artifactId>
+        <groupId>com.jungle</groupId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>jungle-mcp</artifactId>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>jungle-mcp-webflux-server</module>
+        <module>jungle-mcp-webflux-client</module>
+        <module>jungle-mcp-default-client</module>
+    </modules>
+
+    <description>
+        文章来源：https://mp.weixin.qq.com/s/TYoJ9mQL8tgT7HjTQiSdlw
+        简单来说
+            sse 模式是将客户端和服务端分开，客户端的LLM可以调用服务端中标有@Tool注解的接口
+            stdio 模式是将服务端作为一个子进程启动，将客户端和服务端做为一个服务
+        MCP client可以用Claude
+        MCP Server 包括调用自己发布的 Java MCP Server，也包括市面上其他通用 MCP Server
+    </description>
+    <properties>
+
+        <!-- Spring AI -->
+        <spring-ai.version>1.0.0-M6</spring-ai.version>
+
+        <!-- Spring AI Alibaba -->
+        <spring-ai-alibaba.version>1.0.0-M6.1</spring-ai-alibaba.version>
+
+        <!-- Spring Boot -->
+        <spring-boot.version>3.4.0</spring-boot.version>
+
+    </properties>
+
+
+    <dependencies>
+
+    </dependencies>
+
+</project>
