@@ -26,6 +26,11 @@ spring:
     banner-mode: off
   application:
     name: mcp-sse-server
+  datasource:
+    username: root
+    password: Jskfb@2021
+    url: jdbc:mysql://10.126.226.20:3306/temp_db
+    type: com.zaxxer.hikari.HikariDataSource
   ai:
     mcp:
       server:
@@ -33,3 +38,6 @@ spring:
         version: 0.0.1
 # logging.pattern.console=
 
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml

@@ -26,6 +26,7 @@
         <module>jungle-opencv</module>
         <module>jungle-kafka</module>
         <module>jungle-springboot3-bom</module>
+        <module>jungle-springboot-learn-bom</module>
         <module>jungle-rabbitmq</module>
         <module>jungle-rocketmq</module>
         <module>jungle-elasticsearch</module>

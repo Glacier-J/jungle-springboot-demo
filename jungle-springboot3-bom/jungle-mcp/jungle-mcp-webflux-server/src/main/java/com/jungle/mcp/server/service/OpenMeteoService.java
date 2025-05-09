@@ -16,25 +16,26 @@
  * @author brianxiadong
  */
 
-package org.springframework.ai.mcp.sample.server;
-
-import java.util.List;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+package com.jungle.mcp.server.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 /**
  * 利用OpenMeteo的免费天气API提供天气服务
  * 该API无需API密钥，可以直接使用
  */
+@Slf4j
 @Service
 public class OpenMeteoService {
 
@@ -146,6 +147,7 @@ public class OpenMeteoService {
      */
     @Tool(description = "获取指定经纬度的天气预报")
     public String getWeatherForecastByLocation(double latitude, double longitude) {
+        log.info(">>>>>> 获取指定经纬度的天气预报{} {}", latitude, longitude);
         // 获取天气数据（当前和未来7天）
         var weatherData = restClient.get()
                 .uri("/forecast?latitude={latitude}&longitude={longitude}&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,weather_code,wind_speed_10m_max,wind_direction_10m_dominant&timezone=auto&forecast_days=7",
@@ -232,7 +234,7 @@ public class OpenMeteoService {
     @Tool(description = "获取指定位置的空气质量信息（模拟数据）")
     public String getAirQuality(@ToolParam(description = "纬度") double latitude,
             @ToolParam(description = "经度") double longitude) {
-
+        log.info(">>>>>> 获取指定位置的空气质量信息{} {}", latitude, longitude);
         try {
             // 从天气数据中获取基本信息
             var weatherData = restClient.get()

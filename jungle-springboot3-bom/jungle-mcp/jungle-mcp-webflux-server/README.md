@@ -4,6 +4,8 @@
 
 本项目是一个基于 Spring AI 框架的 Model Context Protocol (MCP) WebFlux 服务器示例。它展示了如何构建一个支持 WebFlux 和 STDIO 两种通信方式的 MCP 服务器，提供天气查询和空气质量信息等工具服务。
 
+## 注意， 只要MCP服务端重启了，client也需要重启才行,要注意参数类型和 prompt
+
 ## 主要功能
 
 - 支持 WebFlux 和 STDIO 两种通信方式

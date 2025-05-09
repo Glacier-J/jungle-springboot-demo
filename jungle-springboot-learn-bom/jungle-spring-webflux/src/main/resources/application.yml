@@ -1,8 +1,5 @@
-DASH_SCOPE_API_KEY: sk-67683feecb244aabaddc7e3cab790bca
-
-
 server:
-  port: 8883
+  port: 8885
   servlet:
     encoding:
       charset: UTF-8
@@ -11,18 +8,9 @@ server:
 
 spring:
   application:
-    name: mcp-sse-client
+    name: webflux-service
 #  main:
 #    web-application-type: none
-  ai:
-    dashscope:
-      api-key: ${DASH_SCOPE_API_KEY}
-    mcp:
-      client:
-        sse:
-          connections:
-            server1:
-              url: http://localhost:8082
   mandatory-file-encoding: UTF-8
 
 # 调试日志

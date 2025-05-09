@@ -11,13 +11,7 @@ spring:
       client:
         stdio:
           servers-configuration: classpath:/mcp-servers-config.json
-          # 直接配置
-          # connections:
-          #   server1:
-          #     command: java
-          #     args:
-          #       - -jar
-          #       - /Users/xiadong/mcp-stdio-server-exmaple-0.0.1-SNAPSHOT.jar  # 放一个绝对路径，修改为server jar包所在位置
+          # 使用百度地图的 MCP，需要申请 ak：https://lbsyun.baidu.com/apiconsole/key
   mandatory-file-encoding: UTF-8
 
 # 调试日志
