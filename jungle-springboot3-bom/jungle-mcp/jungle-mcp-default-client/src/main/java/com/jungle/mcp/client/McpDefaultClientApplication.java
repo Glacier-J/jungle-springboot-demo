@@ -33,7 +33,8 @@ public class McpDefaultClientApplication {
     }
 
     // 直接硬编码中文问题，避免配置文件编码问题
-    private String userInput = "北京的天气如何？";
+//    private String userInput = "北京的天气如何？";
+    private String userInput = "使用百度地图规划从成都市到九寨沟的路线";
 
     @Bean
     public CommandLineRunner predefinedQuestions(ChatClient.Builder chatClientBuilder, ToolCallbackProvider tools,

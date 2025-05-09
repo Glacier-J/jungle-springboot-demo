@@ -10,7 +10,8 @@ spring:
     mcp:
       client:
         stdio:
-          servers-configuration: classpath:/mcp-servers-config.json
+#          servers-configuration: classpath:/mcp-servers-config.json
+          servers-configuration: classpath:/mcp-servers-baidu-map-config.json
           # 使用百度地图的 MCP，需要申请 ak：https://lbsyun.baidu.com/apiconsole/key
   mandatory-file-encoding: UTF-8
 

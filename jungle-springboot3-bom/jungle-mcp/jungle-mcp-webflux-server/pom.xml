@@ -9,8 +9,6 @@
         <version>${revision}</version>
     </parent>
 
-    <groupId>com.example</groupId>
-
     <artifactId>jungle-mcp-webflux-server</artifactId>
 
     <description>SSE 模式 Sample Spring Boot application demonstrating MCP client and server usage</description>
