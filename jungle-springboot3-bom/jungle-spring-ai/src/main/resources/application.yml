@@ -1,0 +1,10 @@
+spring:
+  ai:
+    openai:
+      base-url: https://api.chatanywhere.tech
+      api-key: sk-pyWQ3wgQKHsZNc4DF8J0BhCo0ZF8a7sos7jYR7oEnUID0aDR
+      chat:
+        options:
+          model: gpt-4o-mini # gpt-4o、gpt-4o-mini、gpt-4-turbo、gpt-3.5-turbo
+          tools: #模型可以调用的工具列表，函数返回结果作为模型输入
+#          temperature:

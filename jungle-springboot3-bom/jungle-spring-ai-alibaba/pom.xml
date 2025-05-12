@@ -9,23 +9,18 @@
         <groupId>com.jungle</groupId>
         <version>${revision}</version>
     </parent>
-
-    <artifactId>jungle-spring-ai</artifactId>
+    <artifactId>jungle-spring-ai-alibaba</artifactId>
 
     <properties>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.alibaba.cloud.ai</groupId>
+            <artifactId>spring-ai-alibaba-starter</artifactId>
+            <version>1.0.0-M6.1</version>
         </dependency>
 
-        <!-- openai 文档：https://docs.spring.io/spring-ai/reference/api/chat/openai-chat.html-->
-        <dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-model-openai</artifactId>
-        </dependency>
 
     </dependencies>
 </project>

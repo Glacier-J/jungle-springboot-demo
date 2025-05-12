@@ -18,12 +18,16 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <spring-boot.version>3.4.0</spring-boot.version>
+
+        <spring-ai.version>1.0.0-M8</spring-ai.version>
+
     </properties>
 
     <packaging>pom</packaging>
 
     <modules>
         <module>jungle-langchain4j</module>
+        <module>jungle-spring-ai-alibaba</module>
         <module>jungle-spring-ai</module>
         <module>jungle-mcp</module>
     </modules>
@@ -35,6 +39,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -70,7 +82,7 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <scope>test</scope>
             </dependency>
-        </dependencies>
 
+        </dependencies>
     </dependencyManagement>
 </project>
