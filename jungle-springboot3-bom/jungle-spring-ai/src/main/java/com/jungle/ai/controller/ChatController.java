@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -43,7 +44,7 @@ public class ChatController {
     private ChatModel openAiChatModel;
 
     /**
-     * chat 文本聊天
+     * chat 文本聊天（同步）
      * @param input
      * @return
      */
@@ -59,11 +60,30 @@ public class ChatController {
     }
 
 
-    //自定义option或使用默认配置
+    //自定义option 或 使用默认配置
     public static final OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
             .model(OpenAiApi.ChatModel.GPT_4_O_MINI.getValue())
             .temperature(0.8)
             .build();
+
+
+    /**
+     * chat 文本聊天(流式)
+     *
+     * @param input
+     * @return
+     */
+    @GetMapping("/openai/chat/with/text/stream")
+    public Flux<ChatResponse> chatWithChatModelStream(@RequestParam("input") String input) {
+        //自定义option或使用默认配置
+        OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
+                .model(OpenAiApi.ChatModel.GPT_4_O_MINI.getValue())
+                .temperature(0.8)
+                .build();
+
+        return openAiChatModel.stream(new Prompt(input, openAiChatOptions));
+    }
+
 
     /**
      * chat 多模态功能聊天示例 Vision  输入图像、Audio  输入音频 、Output Audio  输出音频
