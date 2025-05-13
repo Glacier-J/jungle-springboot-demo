@@ -1,5 +1,10 @@
+server:
+  port: 8180
+
 spring:
   ai:
+    model:
+#      chat: zhipuai #指定自动配置的ChatModel，默认自动配置所有 openai
     openai:
       base-url: https://api.chatanywhere.tech
       api-key: sk-pyWQ3wgQKHsZNc4DF8J0BhCo0ZF8a7sos7jYR7oEnUID0aDR
@@ -8,3 +13,11 @@ spring:
           model: gpt-4o-mini # gpt-4o、gpt-4o-mini、gpt-4-turbo、gpt-3.5-turbo
           tools: #模型可以调用的工具列表，函数返回结果作为模型输入
 #          temperature:
+
+    zhipuai:
+#      base-url: #https://open.bigmodel.cn/api/paas
+      api-key: c0845fe257d84025a241057104bac150.WCx7C04moYOhXeJT
+      chat:
+        options:
+          model: GLM-3-Turbo
+          tools:

@@ -1,8 +1,6 @@
 package com.jungle.ai.controller;
 
-import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -11,6 +9,7 @@ import org.springframework.ai.content.Media;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.ai.openai.api.ResponseFormat;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,24 +23,27 @@ import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping("/ai")
-public class ChatController {
+//@RequiredArgsConstructor
+public class ChatOpenAiController {
 
-    private final ChatClient chatClient;
+    private final ChatModel openAiChatModel;
 
-    public ChatController(ChatClient.Builder builder) {
-        this.chatClient = builder.build();
+//    private final ChatClient chatClient;
+
+    public ChatOpenAiController(/*ChatClient.Builder builder, */@Qualifier(value = "openAiChatModel") ChatModel openAiChatModel) {
+//        this.chatClient = builder.build();
+        this.openAiChatModel = openAiChatModel;
     }
 
-    @GetMapping("/openai/chat1")
-    public String chatWithChatClient(@RequestParam("input") String input) {
-        return this.chatClient.prompt()
-                .user(input)
-                .call()
-                .content();
-    }
+//    @GetMapping("/openai/chat1")
+//    public String chatWithChatClient(@RequestParam("input") String input) {
+//        return this.chatClient.prompt()
+//                .user(input)
+//                .call()
+//                .content();
+//    }
 
-    @Resource
-    private ChatModel openAiChatModel;
+
 
     /**
      * chat 文本聊天（同步）
@@ -156,5 +158,42 @@ public class ChatController {
                         .build());
 
         return openAiChatModel.call(prompt);
+    }
+
+
+    //Low-level OpenAiApi Client
+    public void chatLowLevel() {
+//        var openAiApi = OpenAiApi.builder()
+//                .apiKey(System.getenv("OPENAI_API_KEY"))
+//                .build();
+//        var openAiChatOptions = OpenAiChatOptions.builder()
+//                .model("gpt-3.5-turbo")
+//                .temperature(0.4)
+//                .maxTokens(200)
+//                .build();
+//        var chatModel = new OpenAiChatModel(openAiApi, openAiChatOptions);
+//
+//        ChatResponse response = chatModel.call(
+//                new Prompt("Generate the names of 5 famous pirates."));
+
+// Or with streaming responses
+//        Flux<ChatResponse> response = chatModel.stream(
+//                new Prompt("Generate the names of 5 famous pirates."));
+
+
+        OpenAiApi openAiApi = OpenAiApi.builder()
+                .apiKey(System.getenv("OPENAI_API_KEY"))
+                .build();
+
+        OpenAiApi.ChatCompletionMessage chatCompletionMessage =
+                new OpenAiApi.ChatCompletionMessage("Hello world", OpenAiApi.ChatCompletionMessage.Role.USER);
+
+// Sync request
+//        ResponseEntity<OpenAiApi.ChatCompletion> response = openAiApi.chatCompletionEntity(
+//                new OpenAiApi.ChatCompletionRequest(List.of(chatCompletionMessage), "gpt-3.5-turbo", 0.8, false));
+
+// Streaming request
+//        Flux<OpenAiApi.ChatCompletionChunk> streamResponse = openAiApi.chatCompletionStream(
+//                new OpenAiApi.ChatCompletionRequest(List.of(chatCompletionMessage), "gpt-3.5-turbo", 0.8, true));
     }
 }
