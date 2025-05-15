@@ -1,7 +1,7 @@
 package com.jungle.mcp.server.config;
 
-import com.jungle.mcp.server.service.SongService;
 import com.jungle.mcp.server.service.OpenMeteoService;
+import com.jungle.mcp.server.service.SongService;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
 import org.springframework.context.annotation.Bean;
@@ -18,9 +18,10 @@ public class MCPServerConfig {
      */
     @Bean
     public ToolCallbackProvider weatherTools(OpenMeteoService openMeteoService,
-                                             SongService songService) {
+                                             SongService songService/*,
+                                             WeatherService weatherService*/) {
         return MethodToolCallbackProvider.builder()
-                .toolObjects(openMeteoService,songService)
+                .toolObjects(openMeteoService, songService/*, weatherService*/)
                 .build();
     }
 }
