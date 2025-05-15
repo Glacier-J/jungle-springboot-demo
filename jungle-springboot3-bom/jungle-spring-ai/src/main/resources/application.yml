@@ -21,6 +21,11 @@ spring:
         options:
           model: GLM-3-Turbo
           tools:
+          #设置默认 ToolContext
+          tool-context:
+            id: 15
+            author: jungle
+
     vectorstore:
       milvus:
         client:

@@ -21,6 +21,9 @@ import reactor.core.publisher.Flux;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+/**
+ * OpenAI
+ */
 @RestController
 @RequestMapping("/ai")
 //@RequiredArgsConstructor
