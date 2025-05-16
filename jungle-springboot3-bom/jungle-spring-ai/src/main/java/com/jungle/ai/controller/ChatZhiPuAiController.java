@@ -12,6 +12,7 @@ import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.content.Media;
 import org.springframework.ai.support.ToolCallbacks;
 import org.springframework.ai.tool.ToolCallback;
@@ -19,6 +20,7 @@ import org.springframework.ai.tool.function.FunctionToolCallback;
 import org.springframework.ai.tool.metadata.ToolMetadata;
 import org.springframework.ai.zhipuai.ZhiPuAiChatOptions;
 import org.springframework.ai.zhipuai.api.ZhiPuAiApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +50,9 @@ public class ChatZhiPuAiController {
     @Resource(name = "zhiPuAiChatModel")
     private ChatModel zhiPuAiChatModel;
 
+    @Value("classpath:/prompts/system-message.md")
+    private org.springframework.core.io.Resource systemResource;
+
     /**
      * chat 文本聊天（同步）
      *
@@ -64,6 +69,26 @@ public class ChatZhiPuAiController {
                 .build();
 
         return zhiPuAiChatModel.call(new Prompt(input, zhipuAiChatOptions));
+    }
+
+    /**
+     * chat 文本聊天（同步）prompt来自文件
+     *
+     * @param input
+     * @return
+     */
+    @GetMapping("/with/text/by/resource")
+    public ChatResponse chatWithResource(@RequestParam("input") String input) {
+        //自定义option或使用默认配置
+
+        ZhiPuAiChatOptions zhipuAiChatOptions = ZhiPuAiChatOptions.builder()
+                .model(ZhiPuAiApi.ChatModel.GLM_4_Flash.getValue())
+                .temperature(0.8)
+                .build();
+        SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(systemResource);
+        Prompt prompt1 = new Prompt(input, zhipuAiChatOptions);
+        Prompt prompt = prompt1.augmentUserMessage(systemPromptTemplate.getTemplate());
+        return zhiPuAiChatModel.call(prompt);
     }
 
 

@@ -1,6 +1,8 @@
 package com.jungle.ai.controller;
 
+import com.jungle.ai.entity.ActorsFilms;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
@@ -161,6 +163,36 @@ public class ChatOpenAiController {
                         .build());
 
         return openAiChatModel.call(prompt);
+    }
+
+    /**
+     * chat 结构化输出聊天
+     *
+     * @param input
+     * @return
+     */
+    @GetMapping("/openai/chat/with/so1")
+    public ActorsFilms chatWithStructuredOutputs1(@RequestParam(value = "input", required = false) String input) {
+//        OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
+//                .responseFormat(ResponseFormat.builder().type(ResponseFormat.Type.JSON_OBJECT).build())
+//                .build();
+//
+//        Prompt prompt = new Prompt(input, openAiChatOptions);
+        ChatClient.CallResponseSpec call = ChatClient.create(openAiChatModel)
+                .prompt()
+//                .options()
+                .user(u -> {
+                    u.text("Generate the game of 5 movies for {actor}.").param("actor", "Rockstar Games");
+                })
+                .call();
+//        System.out.println(call.content());
+
+//                Map<String, Object> mapContent = call.entity(new ParameterizedTypeReference<Map<String, Object>>() {
+//        });
+
+        //告诉LLM按照指定格式输出json，底层利用 ObjectMapper 将json串就行反序列化Java对象实例
+        return call.entity(ActorsFilms.class);
+
     }
 
 
