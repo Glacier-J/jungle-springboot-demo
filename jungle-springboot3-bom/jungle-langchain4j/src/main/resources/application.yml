@@ -1,26 +1,14 @@
 server:
-  port: 8083
+  port: 8183
 
 spring:
   application:
     name: jungle-langchain4j-demo
 
 # langchain4j
-langchain4j:
-  open-ai:
-    streaming-chat-model:
-      api-key: sk-pyWQ3wgQKHsZNc4DF8J0BhCo0ZF8a7sos7jYR7oEnUID0aDR
-      model-name: gpt-4o
-      log-requests: true
-      log-responses: true
-      temperature: 0.3
-      timeout: 60
-  #    chat-model:
-#      api-key: sk-pyWQ3wgQKHsZNc4DF8J0BhCo0ZF8a7sos7jYR7oEnUID0aDR
-#      model-name: gpt-4o
-#      log-requests: true
-#      log-responses: true
-  ollama:
-    chat-model:
-      base-url: http://localhost:11434
-      model-name: llama3.1
+#langchain4j:
+#  open-ai:
+#  ollama:
+#    chat-model:
+#      base-url: http://localhost:11434
+#      model-name: llama3.1

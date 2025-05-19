@@ -5,7 +5,7 @@ import dev.langchain4j.store.memory.chat.ChatMemoryStore;
 
 import java.util.List;
 
-class PersistentChatMemoryStore implements ChatMemoryStore {
+public class PersistentChatMemoryStore implements ChatMemoryStore {
 
     /*
     默认情况下，ChatMemory 实现将 ChatMessage 存储在内存中
