@@ -6,6 +6,9 @@ import dev.langchain4j.service.TokenStream;
 //@AiService
 public interface IAssistant2 {
 
-    @SystemMessage("You are a grumpy assistant")
+    @SystemMessage("You are a good friend of mine. Answer using slang.")
     TokenStream chatFlux(String userMessage);
+
+    @SystemMessage("You are a grumpy assistant")
+    String chat(String userMessage);
 }
