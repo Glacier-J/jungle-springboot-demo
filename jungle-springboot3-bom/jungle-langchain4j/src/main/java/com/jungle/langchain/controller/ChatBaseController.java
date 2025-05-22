@@ -42,7 +42,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
-import static com.jungle.langchain.constant.ChatConstant.BASE_URL;
+import static com.jungle.langchain.constant.ChatConstant.OPENAI_BASE_URL;
 import static com.jungle.langchain.constant.ChatConstant.OPENAI_API_KEY;
 import static dev.langchain4j.model.LambdaStreamingResponseHandler.onPartialResponse;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -307,7 +307,7 @@ public class ChatBaseController {
     public void chatWithMultipleService(@RequestParam(value = "message", required = false) String message) {
         GreetingExpert greetingExpert = AiServices.create(GreetingExpert.class, openAiChatModel);
         EmbeddingStore<TextSegment> embeddingStore  = new InMemoryEmbeddingStore<>();
-        EmbeddingModel embeddingModel = new OpenAiEmbeddingModel(OpenAiEmbeddingModel.builder().baseUrl(BASE_URL).apiKey(OPENAI_API_KEY));
+        EmbeddingModel embeddingModel = new OpenAiEmbeddingModel(OpenAiEmbeddingModel.builder().baseUrl(OPENAI_BASE_URL).apiKey(OPENAI_API_KEY));
 
         ContentRetriever contentRetriever = new EmbeddingStoreContentRetriever(embeddingStore, embeddingModel);
         ChatBot chatBot = AiServices.builder(ChatBot.class)

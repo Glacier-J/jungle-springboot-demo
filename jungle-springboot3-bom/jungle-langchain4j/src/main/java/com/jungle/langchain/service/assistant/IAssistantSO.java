@@ -5,7 +5,9 @@ import com.jungle.langchain.pojo.Person;
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.spring.AiService;
 
-@AiService
+import static dev.langchain4j.service.spring.AiServiceWiringMode.EXPLICIT;
+
+@AiService(wiringMode = EXPLICIT, chatModel = "openAiChatModel")
 public interface IAssistantSO {
 
     @UserMessage("Extract information about a person from {{it}}")
