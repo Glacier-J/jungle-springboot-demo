@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  #单机版Apache RocketMQ方便开发者一键部署开发环境，已内置Dashboard面板，长线维护欢迎品鉴。 https://hub.docker.com/r/xuchengen/rocketmq
   rocketmq:
     image: xuchengen/rocketmq:latest
     container_name: rocketmq

@@ -1,0 +1,28 @@
+# Copyright Broadcom, Inc. All Rights Reserved.
+# SPDX-License-Identifier: APACHE-2.0
+
+services:
+  kafka:
+    image: bitnami/kafka:3.9
+    container_name: kafka
+    hostname: kafka  # 显式设置主机名
+    restart: always
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    volumes:
+      - "./data:/bitnami"
+    environment:
+      # KRaft settings
+      - KAFKA_CFG_NODE_ID=0 # 当前节点的唯一ID (必须与quorum.voters中的ID对应)
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      # Listeners
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:9092,CONTROLLER://kafka:9093 #网络监听配置
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://47.109.52.29:9092 # 客户端实际连接的地址 (如果是云服务器需要填公网IP/域名)
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT #监听器安全协议映射 生产建议SSL
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+volumes:
+  data:
+    driver: local
