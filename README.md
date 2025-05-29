@@ -1,6 +1,11 @@
 readme.
 
 jungle`s demos for springboot.
+[jungle-spring-ai](jungle-springboot3-bom/jungle-spring-ai)
+
+[jungle-langchain4j](jungle-springboot3-bom/jungle-langchain4j)
+
+[jungle-spring-ai-alibaba](jungle-springboot3-bom/jungle-spring-ai-alibaba)
 
 [jungle-elasticsearch](jungle-elasticsearch) 
 
