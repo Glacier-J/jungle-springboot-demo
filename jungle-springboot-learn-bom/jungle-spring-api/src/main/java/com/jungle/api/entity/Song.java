@@ -1,4 +1,4 @@
-package com.jungle.webflux.entity;
+package com.jungle.api.entity;
 
 import lombok.Data;
 

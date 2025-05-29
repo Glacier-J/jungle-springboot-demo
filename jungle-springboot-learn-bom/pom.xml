@@ -16,6 +16,7 @@
 
     <modules>
         <module>jungle-spring-webflux</module>
+        <module>jungle-spring-api</module>
     </modules>
 
     <properties>

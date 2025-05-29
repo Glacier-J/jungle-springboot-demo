@@ -1,7 +1,7 @@
-package com.jungle.webflux.service.impl;
+package com.jungle.api.service.impl;
 
-import com.jungle.webflux.entity.Song;
-import com.jungle.webflux.service.IWebFluxReactiveDemoService;
+import com.jungle.api.entity.Song;
+import com.jungle.api.service.IWebFluxDemoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.Map;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class WebFluxReactiveDemoServiceImpl implements IWebFluxReactiveDemoService {
+public class WebFluxDemoServiceImpl implements IWebFluxDemoService {
 
     //模拟 DB
     private final Map<String, Song> songs = new HashMap<>();

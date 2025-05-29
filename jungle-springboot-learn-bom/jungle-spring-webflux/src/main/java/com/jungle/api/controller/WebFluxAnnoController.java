@@ -1,7 +1,7 @@
-package com.jungle.webflux.controller;
+package com.jungle.api.controller;
 
-import com.jungle.webflux.entity.Song;
-import com.jungle.webflux.service.IWebFluxDemoService;
+import com.jungle.api.entity.Song;
+import com.jungle.api.service.IWebFluxDemoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;

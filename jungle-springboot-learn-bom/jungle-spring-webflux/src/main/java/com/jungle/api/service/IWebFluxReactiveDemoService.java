@@ -1,6 +1,6 @@
-package com.jungle.webflux.service;
+package com.jungle.api.service;
 
-import com.jungle.webflux.entity.Song;
+import com.jungle.api.entity.Song;
 
 public interface IWebFluxReactiveDemoService {
 
