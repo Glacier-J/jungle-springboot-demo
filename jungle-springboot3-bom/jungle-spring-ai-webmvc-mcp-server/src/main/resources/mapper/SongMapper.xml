@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jungle.mcp.server.mapper.SongMapper">
+    <resultMap id="resultMap" type="com.jungle.mcp.server.entity.Song">
+        <result property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="note" column="note" />
+        <result property="singer" column="singer" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="resultMap">
+        select * from song
+    </select>
+</mapper>

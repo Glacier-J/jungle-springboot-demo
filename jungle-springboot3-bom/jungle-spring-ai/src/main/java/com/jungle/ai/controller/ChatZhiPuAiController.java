@@ -4,7 +4,6 @@ import com.jungle.ai.dto.WeatherRequest;
 import com.jungle.ai.dto.WeatherResponse;
 import com.jungle.ai.enums.Unit;
 import com.jungle.ai.tools.DateTimeTools;
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.ai.chat.client.ChatClient;
@@ -16,10 +15,12 @@ import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.content.Media;
 import org.springframework.ai.support.ToolCallbacks;
 import org.springframework.ai.tool.ToolCallback;
+import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.function.FunctionToolCallback;
 import org.springframework.ai.tool.metadata.ToolMetadata;
 import org.springframework.ai.zhipuai.ZhiPuAiChatOptions;
 import org.springframework.ai.zhipuai.api.ZhiPuAiApi;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,8 +48,20 @@ import java.util.Map;
 @RequestMapping("/ai/zhipu")
 public class ChatZhiPuAiController {
 
-    @Resource(name = "zhiPuAiChatModel")
-    private ChatModel zhiPuAiChatModel;
+    private final ChatModel zhiPuAiChatModel;
+
+    private final ToolCallbackProvider tools;
+
+    private final ChatClient chatClient;
+
+
+    public ChatZhiPuAiController(@Qualifier("zhiPuAiChatModel") ChatModel zhiPuAiChatModel, ToolCallbackProvider tools) {
+        this.tools = tools;
+        this.zhiPuAiChatModel = zhiPuAiChatModel;
+        this.chatClient = ChatClient.builder(zhiPuAiChatModel)
+                .defaultToolCallbacks(tools)
+                .build();
+    }
 
     @Value("classpath:/prompts/system-message.md")
     private org.springframework.core.io.Resource systemResource;
@@ -171,7 +184,7 @@ public class ChatZhiPuAiController {
 
         return ChatClient.create(zhiPuAiChatModel)
                 .prompt(prompt)
-//                .toolCallbacks(toolCallbacks)
+                .toolCallbacks(toolCallbacks)
                 .toolCallbacks(list)
 //                .tools(new DateTimeTools())
                 .call()
@@ -201,6 +214,30 @@ public class ChatZhiPuAiController {
                 .content();
 
 //        向ChatOptions和使用FunctionToolCallback加tool适用于向特定请求生效
+    }
+
+
+    /**
+     * chat 文本聊天（同步） mcp
+     *
+     * @param input
+     * @return
+     */
+    @GetMapping("/with/mcp")
+    public String chatWithMcp(@RequestParam("input") String input) {
+
+        String content = ChatClient.create(zhiPuAiChatModel)
+                .prompt()
+                .user(input)
+                .toolCallbacks(tools)
+                .call()
+                .content();
+        System.out.println(" >>>> " + content);
+
+
+        String result1 = zhiPuAiChatModel.call("现在是北京时间什么时候");
+        String result2 = chatClient.prompt("现在是北京时间什么时候").call().content();
+        return "无 mcp >>>" + result1 + "\n\n有 mcp >>> " + result2;
     }
 
 }

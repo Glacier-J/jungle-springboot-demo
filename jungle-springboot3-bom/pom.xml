@@ -32,6 +32,7 @@
         <module>jungle-langchain4j</module>
         <module>jungle-spring-ai-alibaba</module>
         <module>jungle-spring-ai</module>
+        <module>jungle-spring-ai-webmvc-mcp-server</module>
         <module>jungle-mcp</module>
     </modules>
 

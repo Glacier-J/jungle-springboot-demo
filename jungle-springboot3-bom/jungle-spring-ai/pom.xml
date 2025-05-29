@@ -16,19 +16,16 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-mcp-client</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-
-
-        <!-- BEFORE -->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.ai</groupId>-->
-        <!--            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>-->
-        <!--            <version>1.0.3</version>-->
-        <!--        </dependency>-->
 
         <!-- Model -->
         <!-- openai 文档：https://docs.spring.io/spring-ai/reference/api/chat/openai-chat.html-->

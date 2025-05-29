@@ -1,0 +1,22 @@
+server:
+  port: 8181
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: jungle-spring-ai-webmvc-mcp-server
+  datasource:
+    username: root
+    password: Jskfb@2021
+    url: jdbc:mysql://10.126.226.20:3306/temp_db
+    type: com.zaxxer.hikari.HikariDataSource
+  ai:
+    mcp:
+      server:
+        name: jungle-spring-ai-webmvc-mcp-server
+        version: 0.0.1
+#        type: async
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml

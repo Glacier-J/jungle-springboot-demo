@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestClient;
 
 @Configuration
-//@Component
 public class ChatConfig  {
 
 
@@ -18,7 +17,7 @@ public class ChatConfig  {
 
     @Bean
     public ChatClient chatClient(ChatClient.Builder chatClientBuilder, ToolCallbackProvider tools) {
-        return chatClientBuilder.defaultTools(tools).build();
+        return chatClientBuilder.defaultTools(tools.getToolCallbacks()).build();
     }
 
 }
