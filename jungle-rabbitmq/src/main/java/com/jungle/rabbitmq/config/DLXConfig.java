@@ -4,8 +4,14 @@ import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 导致死信的几种原因：
+ *  消息被拒（Basic.Reject /Basic.Nack) 且 requeue = false。
+ *  消息 TTL 过期。
+ *  队列满了，无法再添加。
+ */
 @Configuration
-public class RabbitMQTTLConfig {
+public class DLXConfig {
 
     // 普通队列名称
     public static final String NORMAL_QUEUE = "normal.queue";
@@ -25,7 +31,7 @@ public class RabbitMQTTLConfig {
     @Bean
     public Queue normalQueue() {
         return QueueBuilder.durable(NORMAL_QUEUE)
-                .ttl(60000)// 设置消息TTL为60秒(单位毫秒)
+                .ttl(60000)// 设置消息TTL为60秒(单位毫秒)  //也可以模拟延迟队列
                 .deadLetterExchange( DLX_EXCHANGE) // 设置死信交换机
                 .deadLetterRoutingKey(DLX_ROUTING_KEY) // 设置死信路由键
                 .build();
