@@ -31,6 +31,7 @@
         <module>jungle-rocketmq</module>
         <module>jungle-elasticsearch</module>
         <module>jungle-gis</module>
+        <module>syeran-chat</module>
     </modules>
 
     <properties>

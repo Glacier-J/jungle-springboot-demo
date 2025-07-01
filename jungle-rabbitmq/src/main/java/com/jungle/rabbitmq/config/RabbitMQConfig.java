@@ -23,7 +23,7 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(queueDemo01).to(fanoutExchange01());
     }
 
-    /*----------------------------*/
+    /*------------- 直连---------------*/
 
     @Bean
     public DirectExchange directExchange01() {
@@ -40,6 +40,24 @@ public class RabbitMQConfig {
         return BindingBuilder.bind(queueDemo02)
                 .to(directExchange01())
                 .with("routing.key.demo01");
+    }
+    //-----  Topic  ------
+    // Topic（主题）和 Direct(直连) 交换机主要的区别在于topic支持通配符路由到队列中
+    @Bean
+    public Queue queueDemo03(){
+        return new Queue("queue.demo03");
+    }
+
+    @Bean
+    public TopicExchange topicExchange(){
+        return new TopicExchange("topic.exchange.demo01");
+    }
+
+    @Bean
+    public Binding bindingDemo03(){
+        return BindingBuilder.bind(queueDemo03())
+                .to(topicExchange())
+                .with("routing.key.demo03.#");
     }
 
 
