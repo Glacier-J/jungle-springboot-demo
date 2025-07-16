@@ -5,12 +5,13 @@ spring:
   ai:
     mcp:
       client:
+        enabled: false
         sse:
           #配置 mcp 服务器地址
           connections:
             server1:
               url: http://localhost:8181
-#        type: async
+    #        type: async
 #        toolcallback:
 #          enabled: true
 #    model:
